@@ -4,7 +4,13 @@ require 'money/bank/google_currency'
 Money.default_bank = Money::Bank::GoogleCurrency.new
 Money.use_i18n = false
 
-p "Digite el valor a convertir, Ejemplo 1000 USD a COP"
+p "Bienvenido a Conver currency esta es la forma mas facil de convertir dinero"
+p
+p "Ejemplos:"
+p " 1 BTC a USD "
+p " 1 USD a COP "
+
+p "Digite el valor a convertir"
 str = gets.chomp.strip
 
 tokens = str.split(' ')
