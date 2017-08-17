@@ -17,71 +17,8 @@
     De lo contrario Gana el Repartidor
   5. Iniciar nuevo juego   
 =end
-
-class Card
-  attr_reader :suit, :value
-  def initialize(suit,value)
-    @suit = suit
-    @value = value
-  end
-  def value
-    return 10 if ["J", "Q", "K" ].include?(@value)
-    return 11 if @value == "A"
-    return @value
-  end
-  def to_s
-    "#{@value}-#{@suit}"
-  end
-end
-
-class Deck
-  attr_reader :cards
-
-  def initialize
-    @cards = []
-    build_cards
-  end
-  def take
-    @cards.shift
-  end
-  private
-  def build_cards
-    [:clubs, :diamonds, :spades, :hearts].each do |suit|
-      (2..10).each do |n|
-        @cards << Card.new(suit, n)
-      end
-      ["J","Q","K","A"].each do |face|
-        @cards << Card.new(suit, face)
-      end
-    end
-    @cards.shuffle!
-  end
-end
-
-class Hand
-  attr_reader :cards
-  def initialize(deck)
-    @deck = deck
-    @cards =[]
-  end
-  def hit!
-    @cards << @deck.take
-  end
-  def value
-    val = 0
-    @cards.each do |card|
-      val += card.value
-    end
-    val
-  end
-  def to_s
-    str = ""
-    @cards.each do |card|
-      str += "#{card}   "
-    end
-    str.strip
-  end
-end
+require_relative './deck'
+require_relative './hand'
 
 deck = Deck.new
 dealer = Hand.new(deck)
